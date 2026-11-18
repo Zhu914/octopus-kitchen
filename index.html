@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>章鱼主厨的八爪厨房</title>
+  <meta name="description" content="一个纯静态 Canvas 互动作品：章鱼主厨用八条触手同时掌管八个工位，接单、烹饪并出餐。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="title-block">
+        <div class="kicker">DEEP-SEA IZAKAYA</div>
+        <h1>章鱼主厨的八爪厨房</h1>
+        <p>八条触手各守一个工位。点菜后，食材会沿台面流转，逐步变成成品。</p>
+      </div>
+      <div class="hero-orb" aria-hidden="true"></div>
+    </header>
+
+    <main class="stage-wrap">
+      <canvas id="kitchen" width="1000" height="680" role="img" aria-label="章鱼主厨和八个厨房工位的动画场景"></canvas>
+      <div class="canvas-note">点击触手可以戳它一下</div>
+    </main>
+
+    <section class="dashboard">
+      <section class="panel menu-panel" aria-labelledby="menu-title">
+        <h2 id="menu-title">今日菜单</h2>
+        <div id="menu" class="menu-grid"></div>
+        <div class="controls">
+          <button id="pause" class="control-btn" type="button">暂停</button>
+          <button id="peak" class="control-btn peak" type="button" aria-pressed="false">高峰期：关</button>
+          <button id="reset" class="control-btn danger" type="button">重新开业</button>
+        </div>
+        <div class="speed-row">
+          <label for="speed">速度</label>
+          <input id="speed" type="range" min="0.25" max="2" step="0.05" value="1">
+          <output id="speed-value">1.00×</output>
+        </div>
+      </section>
+
+      <section class="panel stats-panel" aria-labelledby="stats-title">
+        <h2 id="stats-title">厨房状态</h2>
+        <dl class="stat-cards">
+          <div><dt>进行中</dt><dd id="active-count">0</dd></div>
+          <div><dt>已出餐</dt><dd id="served-count">0</dd></div>
+          <div><dt>高峰期</dt><dd id="peak-state">关闭</dd></div>
+        </dl>
+        <ul id="stations" class="station-list"></ul>
+      </section>
+
+      <section class="panel tickets-panel" aria-labelledby="tickets-title">
+        <h2 id="tickets-title">订单小票</h2>
+        <p id="ticket-empty" class="empty">还没有订单。点左侧任意一道菜即可下单。</p>
+        <div id="tickets" class="tickets"></div>
+      </section>
+    </section>
+
+    <footer>
+      <span>纯 HTML / CSS / Canvas 绘制 · 无外部资源</span>
+      <span>深海路边摊 · 八爪并行后厨</span>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
